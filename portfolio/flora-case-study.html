@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FLORA — Smart Plant Companion</title>
+<style>
+:root{--bg:#fdf6ff;--fg:#2a1b3d;--ac:#6b3fa3;--card:#fff;--mut:#6d5a85}
+@media (prefers-color-scheme:dark){:root{--bg:#1c1326;--fg:#f3e9ff;--ac:#c9a6ff;--card:#2a1c3a;--mut:#b9a6d1}}
+body{margin:0;font-family:system-ui,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6}
+main{max-width:920px;margin:auto;padding:24px}
+h1{color:var(--ac);margin-bottom:0}.tag{color:var(--mut);margin-top:4px}
+.card{background:var(--card);border-radius:16px;padding:20px;margin:18px 0;box-shadow:0 2px 12px #0001}
+.imgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}.imgs img{width:100%;border-radius:12px}
+.badge{display:inline-block;background:var(--ac);color:#fff;border-radius:999px;padding:4px 12px;font-size:.85rem}
+button{border:1px solid var(--ac);background:none;color:var(--ac);border-radius:999px;padding:6px 14px;cursor:pointer}
+a{color:var(--ac)}small{color:var(--mut)}li{margin:4px 0}
+</style></head><body><main>
+<div style="display:flex;justify-content:space-between;align-items:center"><span class="badge" id="status"></span><button id="lang" aria-label="Idioma / Language">EN</button></div>
+<h1 id="title"></h1><p class="tag" id="tag"></p>
+<div class="imgs"><img src="assets/top_view.png" alt="FLORA PCB top"><img src="assets/bottom_view.png" alt="FLORA PCB bottom"></div>
+<small id="note"></small>
+<div class="card"><h2 id="what_h"></h2><p id="what"></p></div>
+<div class="card"><h2 id="mine_h"></h2><ul id="mine"></ul></div>
+<div class="card"><h2 id="ver_h"></h2><ul id="ver"></ul></div>
+<div class="card"><h2 id="tech_h"></h2><p>KiCad 7 · ESP32-C3 · SHT40 · TSL25911 · SSD1306 · USB-C · Arduino/PlatformIO · Python</p>
+<p><a id="gh" href="https://github.com/frandorturtles/FLORA">GitHub</a> </p></div>
+</main>
+<script>
+const I18N={"es": {"title": "FLORA — Smart Plant Companion", "tag": "Monitor de plantas con ESP32-C3 en una PCB con forma de flor", "status": "Estado: diseño completo (v0.1). Aún sin fabricar ni probar en hardware.", "what_h": "Qué es", "what": "FLORA mide la humedad del suelo, la temperatura y humedad del aire y la luz, y las muestra en una pantalla OLED con LEDs de estado y alerta sonora opcional. Se alimenta por USB-C y no riega: mide y avisa.", "mine_h": "Qué diseñé", "mine": ["Esquemático y PCB de 2 capas en KiCad, con el contorno real en forma de flor de 5 pétalos (≈ 56,5 × 53 mm).", "Arquitectura de alimentación USB-C 5 V → LDO 3,3 V, con PTC, TVS y ESD.", "Firmware para ESP32-C3 con calibración seco/húmedo, umbrales configurables y botón corto/largo.", "Gerbers, taladros, BOM, guía de montaje y plan de pruebas."], "ver_h": "Verificación (honesta)", "ver": ["Netlist del esquemático = modelo de diseño (script).", "DRC de KiCad 7: 0 errores y 0 pads sin conectar.", "Gerbers leídos con un visor independiente.", "Lógica del firmware probada en PC.", "Pendiente: ERC, compilación del firmware, fabricación y pruebas físicas."], "tech_h": "Tecnologías", "gh": "Ver el repositorio", "note": "Los colores de las imágenes son de presentación; el color real de la máscara depende del fabricante."}, "en": {"title": "FLORA — Smart Plant Companion", "tag": "ESP32-C3 plant monitor on a flower-shaped PCB", "status": "Status: complete design (v0.1). Not yet fabricated or tested on hardware.", "what_h": "What it is", "what": "FLORA measures soil moisture, air temperature and humidity, and light, and shows them on an OLED display with status LEDs and an optional buzzer alert. USB-C powered; it does not water the plant: it measures and warns.", "mine_h": "What I designed", "mine": ["Schematic and 2-layer PCB in KiCad, with a real 5-petal flower-shaped board outline (≈ 56.5 × 53 mm).", "USB-C 5 V → 3.3 V LDO power architecture with PTC, TVS and ESD protection.", "ESP32-C3 firmware with dry/wet calibration, configurable thresholds and short/long button presses.", "Gerbers, drill files, BOM, assembly guide and test plan."], "ver_h": "Verification (honest)", "ver": ["Schematic netlist = design model (script).", "KiCad 7 DRC: 0 errors and 0 unconnected pads.", "Gerbers read with an independent viewer.", "Firmware logic tested on a PC.", "Pending: ERC, firmware build, fabrication and physical tests."], "tech_h": "Technologies", "gh": "View the repository", "note": "Image colors are for presentation; the real solder-mask color depends on the manufacturer."}};
+let lang=(navigator.language||'es').startsWith('en')?'en':'es';
+function render(){const t=I18N[lang];document.documentElement.lang=lang;
+for(const k of ['title','tag','what_h','what','mine_h','ver_h','tech_h','note'])document.getElementById(k).textContent=t[k];
+document.getElementById('status').textContent=t.status;document.getElementById('gh').textContent=t.gh;
+for(const k of ['mine','ver']){const ul=document.getElementById(k);ul.innerHTML='';t[k].forEach(x=>{const li=document.createElement('li');li.textContent=x;ul.appendChild(li)})}
+document.getElementById('lang').textContent=lang==='es'?'EN':'ES';document.title=t.title}
+document.getElementById('lang').onclick=()=>{lang=lang==='es'?'en':'es';render()};render();
+</script></body></html>
