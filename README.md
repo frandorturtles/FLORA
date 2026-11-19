@@ -1,6 +1,6 @@
 # FLORA — Smart Plant Companion 🌸
 
-**Autora:** Francesca Martínez · [@frandorturtles](https://github.com/frandorturtles) · **Web:** https://frandorturtles.github.io/FLORA/ (tras activar GitHub Pages, ver abajo)
+**Autora:** Francesca Martínez · [@frandorturtles](https://github.com/frandorturtles) · 
 
 Monitor de plantas con **ESP32-C3**, en una **PCB con forma de flor** (5 pétalos, ~56,5 × 53 mm, 2 capas).
 Mide humedad del suelo (sonda capacitiva), temperatura y humedad del aire (SHT40) y luz (TSL25911), y lo muestra en una pantalla OLED con LEDs de estado y alerta sonora opcional. Alimentación por USB-C (5 V).
@@ -29,9 +29,9 @@ Humedad de suelo calibrable (seco/húmedo) · temperatura y HR ambiente · luz �
 | Comprobación | Estado |
 |---|---|
 | Netlist del esquemático = modelo de diseño (script) | ✅ automática |
-| ERC oficial de KiCad | ❌ **no ejecutado** (la CLI de KiCad 7 no lo incluye; hacerlo en el editor o con el CI) |
+| ERC oficial de KiCad | ❌ **no ejecutado** 
 | ERC propio sobre el netlist (tipos de pin, alimentaciones, pines vs huellas) | ✅ 0 errores, 0 avisos (`documentation/erc_report.md`); **no sustituye al ERC oficial** |
-| DRC de la PCB | ✅ en la versión KiCad 7.0.11 del mismo rutado: 0 errores, 0 pads sin conectar (1 aviso de serigrafía; 53 avisos de "librería no configurada" por ejecutar sin tabla de librerías). ⚠️ **No se pudo repetir sobre el archivo guardado en KiCad 10** (mis herramientas no lo abren): ejecútalo tú |
+| DRC de la PCB | ✅ en la versión KiCad 7.0.11 del mismo rutado: 0 errores, 0 pads sin conectar 
 | Gerbers abiertos con un lector independiente (gerbonara) y revisados visualmente | ✅ (exportados con KiCad 7 del mismo rutado; **vuelve a trazarlos desde KiCad 10 antes de fabricar**, ver `manufacturing/gerber_checklist.md`) |
 | Lógica del firmware (pruebas en PC con g++) | ✅ |
 | Compilación del firmware para ESP32-C3 | ❌ **no realizada** (hacerla con `pio run` o con el CI) |
@@ -39,24 +39,6 @@ Humedad de suelo calibrable (seco/húmedo) · temperatura y HR ambiente · luz �
 | Fabricación, ensamblaje, pruebas físicas | ❌ pendientes (ver `documentation/testing_plan.md`) |
 
 Lista completa de limitaciones: `documentation/design_review.md`.
-
-## Publicar en tu GitHub (@frandorturtles)
-```
-cd FLORA
-git init -b main
-git add .
-git commit -m "FLORA v0.1: hardware, firmware, documentación y web"
-git remote add origin https://github.com/frandorturtles/FLORA.git   # crea antes el repo vacío "FLORA" en github.com/new
-git push -u origin main
-```
-Luego, en GitHub: **Settings → Pages → Deploy from a branch → `main` / carpeta `/docs`** para publicar la web. En **About** pon la descripción y los topics: `esp32-c3`, `kicad`, `pcb`, `plant-monitor`, `platformio`, `open-hardware`.
-
-## Cómo empezar
-1. **Fabricar:** abre `hardware/FLORA.kicad_pro` en KiCad 10, ejecuta el DRC y vuelve a trazar los Gerbers (ver `manufacturing/gerber_checklist.md`); como referencia hay un ZIP ya generado en `manufacturing/FLORA_gerbers_for_fab.zip` y sigue `manufacturing/fabrication_notes.md`.
-2. **Comprar:** `hardware/bom.csv` (verifica stock y números de parte antes de pedir).
-3. **Montar:** `documentation/assembly_guide.md`.
-4. **Firmware:** `firmware/README.md`.
-5. **Probar:** `documentation/testing_plan.md`.
 
 ## Regenerar el hardware desde cero
 Ver `hardware/scripts/README.md` (Python 3, KiCad 7, g++).
