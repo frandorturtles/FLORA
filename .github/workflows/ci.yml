@@ -20,7 +20,7 @@ jobs:
       - run: cd firmware && pio run -e flora
   hardware-checks:
     runs-on: ubuntu-latest
-    container: kicad/kicad:8.0
+    container: kicad/kicad:10.0   # verifica que esta etiqueta exista en Docker Hub (los archivos están en formato KiCad 10)
     steps:
       - uses: actions/checkout@v4
       - name: ERC
