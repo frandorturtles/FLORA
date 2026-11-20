@@ -109,3 +109,4 @@ inline float tslLux(uint16_t ch0, uint16_t ch1, float atimeMs, float gain) {
 }
 
 }  // namespace flora
+
