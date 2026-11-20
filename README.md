@@ -1,4 +1,4 @@
-# FLORA — Smart Plant Companion 🌸
+# FLORA — Smart Plant Companion  🌸
 
 🇬🇧 **[Read this in English → README.en.md](README.en.md)**
 
